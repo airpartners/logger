@@ -108,7 +108,8 @@ class BS1010(SerialDevice):
         self.wait_for_ack()
 
     def get_pos(self):
-        self.send_cmd(str('?'))
+        self.send_cmd('-1?')
+        return int(self.wait_for_ack()[:-1].strip().split(',')[2])
 
     def set_pos(self, pos: int):
         self.send_cmd(str(pos) + '=')
@@ -149,6 +150,10 @@ class BS1010(SerialDevice):
     def send_cmd(self, cmd):
         self._write(cmd)
 
+    def set_runspeed(self, speed: int = 800):
+        self.send_cmd(str(speed) + 'R')
+        self.wait_for_ack()
+
 
 class ThreeWayValve(BS1010):
     positions = {
@@ -156,6 +161,11 @@ class ThreeWayValve(BS1010):
         'b_open': 2000,
         'both': 1000,
     }
+    speed = 3200
+
+    def reset(self):
+        super().reset()
+        self.set_runspeed(self.speed)
 
     def goto_pos(self, pos: str):
         """Move to a named position from self.positions"""
