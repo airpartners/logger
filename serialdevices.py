@@ -1,7 +1,5 @@
-#!/usr/bin/env python3
 import serial
 import time
-
 
 
 class SerialDevice(object):
@@ -93,17 +91,18 @@ class BS1010(SerialDevice):
     See: <https://www.brechtel.com/products-item/mixing-condensation-particle-counter/>
     """
 
+    width = 2000  # rough range of motion from -X to +X limit switch
+
     def __init__(self):
         super().__init__(encoding='ascii')
         self.xpos = None
 
     def connect(self, port, baudrate, timeout=2, **kwargs):
         super().connect(port, baudrate, timeout=timeout, **kwargs)
-
         # reset device and init state
         self.reset()
 
-    def move_to(self, pos: int):
+    def goto(self, pos: int):
         """Note: this returns when it has acknowledged the move, not when finished moving."""
         self.send_cmd(str(pos) + 'G')
         self.wait_for_ack()
@@ -133,17 +132,37 @@ class BS1010(SerialDevice):
     def reset(self):
         self.cnxn.flush()
         self.send_cmd('!')  # reset command
-        # make sure this is the right kind of device
         self.wait_for_ack()
+        l = self.report_latches()
+        assert l & 16
 
         # zero the thing
-        width = 2000  # rough range of motion from -X limit switch to +X limit switch
         self.send_cmd('X')  # set motion to x-axis
-        self.move_to(-(width + 1000))
+        self.goto(-(self.width + 1000))
         self.wait_for_idle()
         l = self.report_latches()
-        assert l | 4
-        self.set_pos(0)
+        assert l & 4
+        self.set_pos(-100)
+        self.goto(0)
+        self.wait_for_idle()
 
     def send_cmd(self, cmd):
         self._write(cmd)
+
+
+class ThreeWayValve(BS1010):
+    positions = {
+        'a_open': 0,
+        'b_open': 2000,
+        'both': 1000,
+    }
+
+    def goto_pos(self, pos: str):
+        """Move to a named position from self.positions"""
+        self.goto(self.positions[pos])
+
+    def open_a(self):
+        self.goto_pos('a_open')
+
+    def open_b(self):
+        self.goto_pos('b_open')
