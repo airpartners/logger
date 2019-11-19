@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import datetime
 import os
 import time
 
@@ -55,8 +56,10 @@ def main():
     valve_state = 'a'
     valve_start = time.time()
     while True:
-        data = m.get_reading()
-        data.update(valve=valve_state)
+        mcpc_data = m.get_reading()
+        timestamp = datetime.datetime.now().isoformat()
+        data = {'timestamp': timestamp, 'valve': valve_state}
+        data.update(mcpc_data)
         print(data, file=f)
         if time.time() - valve_start > valve_period:
             valve_state = 'a' if valve_state != 'a' else 'b'
