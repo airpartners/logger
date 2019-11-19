@@ -74,6 +74,7 @@ class MCPC(SerialDevice):
 
     def get_reading(self):
         self.send_cmd('read')
+        time.sleep(0.1)
         resp = self.read_all()
         assert len(resp) > 0, "Device returned no data"
         return self._parse_values(resp)

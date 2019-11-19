@@ -14,15 +14,15 @@ def eprint(*args, **kwargs):
 parser = argparse.ArgumentParser()
 parser.add_argument('mcpc_port')
 parser.add_argument('--mcpc-baud', type=int, required=False, default=115200)
-parser.add_argument('--period', type=int, default=10)
-parser.add_argument('save_file', type=argparse.FileType, default='-', nargs='?')
+parser.add_argument('--period', type=int, default=1)
+parser.add_argument('save_file', type=argparse.FileType('w'), default='-', nargs='?')
 args = parser.parse_args()
 
 m = MCPC()
 m.connect(args.mcpc_port, args.mcpc_baud)
 m._write('help\r\n')
 time.sleep(0.5)
-eprint(m._read_all())
+eprint(m.read_all())
 
 
 f = args.save_file
