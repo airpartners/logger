@@ -98,10 +98,11 @@ class BS1010(SerialDevice):
         super().__init__(encoding='ascii')
         self.xpos = None
 
-    def connect(self, port, baudrate, timeout=2, **kwargs):
+    def connect(self, port, baudrate, timeout=2, reset=True, **kwargs):
         super().connect(port, baudrate, timeout=timeout, **kwargs)
-        # reset device and init state
-        self.reset()
+        if reset:
+            # reset device and init state
+            self.reset()
 
     def goto(self, pos: int):
         """Note: this returns when it has acknowledged the move, not when finished moving."""
