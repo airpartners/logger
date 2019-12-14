@@ -3,6 +3,8 @@ import time
 
 
 class SerialDevice(object):
+    """General interface to connect to a device over serial."""
+
     def __init__(self, encoding='utf-8'):
         self.cnxn = None
         self.encoding = encoding
@@ -87,9 +89,11 @@ class MCPC(SerialDevice):
 
 
 class BS1010(SerialDevice):
-    """An interface to a Brechtel Mixing Condensation Particle Counter device.
+    """An interface to a BS1010 Stepper Motor Controlleer from Peter Norberg Consulting, Inc.
 
-    See: <https://www.brechtel.com/products-item/mixing-condensation-particle-counter/>
+    Specifically, this is designed around controlling the x-axis of the board.
+
+    See: <https://www.stepperboard.com/BS1010.htm>
     """
 
     width = 2000  # rough range of motion from -X to +X limit switch
@@ -158,6 +162,8 @@ class BS1010(SerialDevice):
 
 
 class ThreeWayValve(BS1010):
+    """Interface for a Three-Way valve controlled by a BS1010, provided by Brechtel."""
+
     positions = {
         'a_open': 0,
         'b_open': 2000,
