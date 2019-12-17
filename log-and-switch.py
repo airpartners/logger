@@ -49,7 +49,7 @@ def main():
     valve = ThreeWayValve()
     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
 
-    data_logger = logging.Logger('data')
+    data_logger = logging.Logger('data', level=logging.INFO)
     file_handler = logging.handlers.TimedRotatingFileHandler('data.csv', when='h', interval=1)
     formatter = logging.Formatter('%(message)s')
     file_handler.setFormatter(formatter)
@@ -64,7 +64,7 @@ def main():
         data = {'timestamp': timestamp, 'valve': valve_state}
         data.update(mcpc_data)
         # print(data)
-        data_logger.log(','.join(data.values()))
+        data_logger.info(','.join(map(str, data.values())))
         if time.time() - valve_start > valve_period:
             valve_state = 'a' if valve_state != 'a' else 'b'
             valve.goto_pos(valve_state + '_open')
