@@ -8,51 +8,48 @@ from serialdevices import MCPC, ThreeWayValve
 
 
 values = [
-    ('MCPC_PORT', str),
-    ('MCPC_BAUD', int),
-    ('VALVE_PORT', str),
-    ('VALVE_BAUD', int),
-    ('SAVE_FILE', str),
+    ('MCPC_PORT', str, None),
+    ('MCPC_BAUD', int, 38400),
+    ('VALVE_PORT', str, None),
+    ('VALVE_BAUD', int, 9600),
+    ('VALVE_PERIOD', int, 10),
+    ('SAMPLING_PERIOD', int, 1),
+    # ('SAVE_FILE', str, None),
 ]
-
-
-def get_env_value(name, modifier):
-    val = os.getenv(name, None)
-    if val is None:
-        return None
-    return modifier(val)
 
 
 def get_config():
     ns = argparse.Namespace()
-    for name, modifier in values:
-        val = get_env_value(name, modifier)
-        ns[name] = val
+    for name, modifier, default in values:
+        val = os.getenv(name, default)
+        if val is None:
+            raise ValueError('Required Environment variable {!r} is not set!'.format(name))
+        setattr(ns, name.lower(), modifier(val))
     return ns
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--mcpc_port', required=True)
-    parser.add_argument('--mcpc-baud', type=int, required=False, default=115200)
-    parser.add_argument('--log-period', type=int, required=False, default=1)
-    parser.add_argument('--valve-port', required=True)
-    parser.add_argument('--valve-baud', type=int, required=False, default=9600)
-    parser.add_argument('--valve-period', type=int, required=False, default=5)
-    parser.add_argument('savefile', type=argparse.FileType('w'), default='-', nargs='?')
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--mcpc_port', required=True)
+    # parser.add_argument('--mcpc-baud', type=int, required=False, default=115200)
+    # parser.add_argument('--log-period', type=int, required=False, default=1)
+    # parser.add_argument('--valve-port', required=True)
+    # parser.add_argument('--valve-baud', type=int, required=False, default=9600)
+    # parser.add_argument('--valve-period', type=int, required=False, default=5)
+    # parser.add_argument('savefile', type=argparse.FileType('w'), default='-', nargs='?')
+    cfg = get_config()
 
 
     m = MCPC()
-    m.connect(port=args.mcpc_port, baudrate=args.mcpc_baud)
+    m.connect(port=cfg.mcpc_port, baudrate=cfg.mcpc_baud)
 
     valve = ThreeWayValve()
-    valve.connect(port=args.valve_port, baudrate=args.valve_baud)
+    valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
 
-    f = args.savefile
+    f = cfg.savefile
 
     valve.open_a()
-    valve_period = args.valve_period # in seconds
+    valve_period = cfg.valve_period # in seconds
     valve_state = 'a'
     valve_start = time.time()
     while True:
@@ -65,7 +62,7 @@ def main():
             valve_state = 'a' if valve_state != 'a' else 'b'
             valve.goto_pos(valve_state + '_open')
             valve_start = time.time()
-        time.sleep(args.log_period)
+        time.sleep(cfg.log_period)
 
 
 if __name__ == '__main__':
