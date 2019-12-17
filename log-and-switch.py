@@ -16,7 +16,7 @@ values = [
     ('VALVE_BAUD', int, 9600),
     ('VALVE_PERIOD', int, 10),
     ('SAMPLING_PERIOD', int, 1),
-    # ('SAVE_FILE', str, None),
+    ('SAVE_FILE', str, 'data.csv'),
 ]
 
 
@@ -50,7 +50,7 @@ def main():
     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
 
     data_logger = logging.Logger('data', level=logging.INFO)
-    file_handler = logging.handlers.TimedRotatingFileHandler('data.csv', when='h', interval=1)
+    file_handler = logging.handlers.TimedRotatingFileHandler(cfg.save_file, when='h', interval=1)
     formatter = logging.Formatter('%(message)s')
     file_handler.setFormatter(formatter)
 
