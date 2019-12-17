@@ -57,6 +57,12 @@ def main():
     file_handler.setFormatter(formatter)
     file_handler.setLevel(logging.INFO)
 
+    # write header
+    mcpc_data = m.get_reading()
+    data = {'timestamp': None, 'valve': None}
+    data.update(mcpc_data)
+    data_logger.info(','.join(map(str, data.keys())))
+
     valve.open_a()
     valve_period = cfg.valve_period # in seconds
     valve_state = 'a'
