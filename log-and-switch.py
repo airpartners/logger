@@ -3,6 +3,8 @@ import argparse
 import datetime
 import os
 import time
+import logging
+import logging.handlers
 
 from serialdevices import MCPC, ThreeWayValve
 
@@ -37,6 +39,7 @@ def main():
     # parser.add_argument('--valve-baud', type=int, required=False, default=9600)
     # parser.add_argument('--valve-period', type=int, required=False, default=5)
     # parser.add_argument('savefile', type=argparse.FileType('w'), default='-', nargs='?')
+
     cfg = get_config()
 
 
@@ -46,7 +49,10 @@ def main():
     valve = ThreeWayValve()
     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
 
-    f = cfg.savefile
+    data_logger = logging.Logger('data')
+    file_handler = logging.handlers.TimedRotatingFileHandler('data.csv', when='h', interval=1)
+    formatter = logging.Formatter('%(message)s')
+    file_handler.setFormatter(formatter)
 
     valve.open_a()
     valve_period = cfg.valve_period # in seconds
@@ -57,12 +63,13 @@ def main():
         timestamp = datetime.datetime.now().isoformat()
         data = {'timestamp': timestamp, 'valve': valve_state}
         data.update(mcpc_data)
-        print(data, file=f)
+        # print(data)
+        data_logger.log(','.join(data.values()))
         if time.time() - valve_start > valve_period:
             valve_state = 'a' if valve_state != 'a' else 'b'
             valve.goto_pos(valve_state + '_open')
             valve_start = time.time()
-        time.sleep(cfg.log_period)
+        time.sleep(cfg.sampling_period)
 
 
 if __name__ == '__main__':
