@@ -49,10 +49,13 @@ def main():
     valve = ThreeWayValve()
     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
 
-    data_logger = logging.Logger('data', level=logging.INFO)
+    data_logger = logging.Logger('data')
+    data_logger.setLevel(logging.INFO)
     file_handler = logging.handlers.TimedRotatingFileHandler(cfg.save_file, when='h', interval=1)
+    data_logger.addHandler(file_handler)
     formatter = logging.Formatter('%(message)s')
     file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.INFO)
 
     valve.open_a()
     valve_period = cfg.valve_period # in seconds
