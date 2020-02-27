@@ -1,0 +1,14 @@
+[Install]
+WantedBy=multi-user.target
+
+[Unit]
+Description=Data logger connected to two serial devices
+After=boot-complete.target
+Requires=boot-complete.target
+User=pi
+
+[Service]
+EnvironmentFile=/boot/logger.env
+ExecStart=/home/pi/ade-logger/log-and-switch.py
+Restart=on-failure
+RestartSec=5s
