@@ -51,7 +51,7 @@ def main():
 
     data_logger = logging.Logger('data')
     data_logger.setLevel(logging.INFO)
-    file_handler = logging.handlers.TimedRotatingFileHandler(cfg.save_file, when='h', interval=1)
+    file_handler = logging.handlers.TimedRotatingFileHandler(cfg.save_file, when='D', interval=1)
     data_logger.addHandler(file_handler)
     formatter = logging.Formatter('%(message)s')
     file_handler.setFormatter(formatter)
