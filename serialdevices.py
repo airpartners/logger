@@ -67,6 +67,8 @@ class MCPC(SerialDevice):
             except ValueError:
                 raise serial.SerialException("Couldn't parse data {!r}".format(l))
             else:
+                if k in res:
+                    raise ValueError('Duplicate value parsed: {!r}'.format(k))
                 res[k] = v
 
         return res
