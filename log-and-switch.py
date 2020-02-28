@@ -68,8 +68,8 @@ def main():
     valve_state = 'a'
     valve_start = time.time()
     while True:
-        mcpc_data = m.get_all()
         timestamp = datetime.datetime.now().isoformat()
+        mcpc_data = m.get_all()
         data = {'timestamp': timestamp, 'valve': valve_state}
         data.update(mcpc_data)
         # print(data)
