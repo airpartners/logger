@@ -42,7 +42,6 @@ def main():
 
     cfg = get_config()
 
-
     m = MCPC()
     m.connect(port=cfg.mcpc_port, baudrate=cfg.mcpc_baud)
 
@@ -69,7 +68,7 @@ def main():
     valve_start = time.time()
     while True:
         timestamp = datetime.datetime.now().isoformat()
-        mcpc_data = m.get_all()
+        mcpc_data = m.get_reading()
         data = {'timestamp': timestamp, 'valve': valve_state}
         data.update(mcpc_data)
         # print(data)
