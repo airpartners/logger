@@ -128,7 +128,7 @@ class BS1010(SerialDevice):
         self.send_cmd(str(pos) + '=')
         self.wait_for_ack()
 
-    def wait_for_ack(self, timeout=0.5):
+    def wait_for_ack(self, timeout=1):
         return self.wait_for('*', timeout=timeout)
 
     def wait_for_idle(self, timeout=5):
