@@ -8,10 +8,26 @@ class SerialDevice(object):
     def __init__(self, encoding='utf-8'):
         self.cnxn = None
         self.encoding = encoding
+        # If serial device connection fails outright (i.e. does not get stuck
+        # waiting but fails in the first place), set this flag.
+        self.started_connection = False
+
+    def started_connection(self):
+        """
+        Returns whether connection has started (i.e. no exceptions or errors
+        when instantiating the Serial device. Could still fail due to timeout
+        or data quality issues; this is an initial check.
+        """
+        return self.started_connection
 
     def connect(self, port, baudrate, timeout=2, **kwargs):
         """Connect to the device over serial."""
-        self.cnxn = serial.Serial(port=port, baudrate=baudrate, timeout=timeout, **kwargs)
+        try:
+            self.cnxn = serial.Serial(port=port, baudrate=baudrate, timeout=timeout, **kwargs)
+            self.started_connection = True
+        except:
+            self.started_connection = False
+            print("Failed to connect to device.") 
 
     def close(self):
         """Close the serial connection."""
