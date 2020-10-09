@@ -11,8 +11,12 @@ class SerialDevice(object):
         # If serial device connection fails outright (i.e. does not get stuck
         # waiting but fails in the first place), set this flag.
         self.started_connection = False
+        # Default timeout for serial connection.
+        # If connection, etc. specifies 0 as the timeout, the class will
+        # default to this instead.
+        self.default_timeout = 10
 
-    def started_connection(self):
+    def get_started_connection(self):
         """
         Returns whether connection has started (i.e. no exceptions or errors
         when instantiating the Serial device. Could still fail due to timeout
@@ -20,11 +24,19 @@ class SerialDevice(object):
         """
         return self.started_connection
 
-    def connect(self, port, baudrate, timeout=2, **kwargs):
+    def get_default_timeout(self):
+        """
+        Return default timeout value of the serial connection interface.
+        """
+        return self.default_timeout
+
+    def connect(self, port, baudrate, timeout=0, **kwargs):
         """Connect to the device over serial."""
         try:
             self.cnxn = serial.Serial(port=port, baudrate=baudrate, timeout=timeout, **kwargs)
             self.started_connection = True
+            if timeout == 0:
+                timeout = self.default_timeout
         except:
             self.started_connection = False
             print("Failed to connect to device.") 
@@ -52,9 +64,11 @@ class SerialDevice(object):
         if msg not in response:
             raise serial.SerialException('Device did not return {!r}')
 
-    def wait_for(self, msg, timeout=2) -> str:
+    def wait_for(self, msg, timeout=0) -> str:
         start = time.time()
         buffer = ''
+        if timeout == 0:
+            timeout = self.default_timeout
         while time.time() - start < timeout:
             if self.cnxn.in_waiting > 0:
                 buffer += self.cnxn.read().decode(self.encoding)
@@ -125,8 +139,11 @@ class BS1010(SerialDevice):
         super().__init__(encoding='ascii')
         self.xpos = None
 
-    def connect(self, port, baudrate, timeout=2, reset=True, **kwargs):
+    def connect(self, port, baudrate, timeout=0, reset=True, **kwargs):
+        if timeout == 0:
+            timeout = self.default_timeout
         super().connect(port, baudrate, timeout=timeout, **kwargs)
+
         if reset:
             # reset device and init state
             self.reset()
