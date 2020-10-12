@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
-"""Connect to a valve to test the interface
+"""
+Connect to a valve to test the interface
 
 Run this script using python's "interactive" flag along with the relevant port for the motor controller's serial connection:
 
@@ -17,6 +18,7 @@ from serialdevices import BS1010
 
 parser = argparse.ArgumentParser()
 parser.add_argument('valve_port')
+# TODO Confirm this is the correct baud for the corresponding serial port.
 parser.add_argument('--valve-baud', type=int, required=False, default=9600)
 args = parser.parse_args()
 
