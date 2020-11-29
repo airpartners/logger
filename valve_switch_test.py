@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
+"""
+Test associated with the three way valve switching functionality.
+"""
 
 import argparse
-import datetime
 import os
 import time
-import logging
-import logging.handlers
 
-from serialdevices import MCPC, ThreeWayValve
+from serialdevices import ThreeWayValve
 
-values = [
+VALUES = [
     ('MCPC_BAUD', int, 38400),
     ('VALVE_PORT', str, None),
     ('VALVE_BAUD', int, 9600),
@@ -23,13 +23,13 @@ def get_config():
     Get the configuration information from the environment variables associated
     with the namespace.
     """
-    ns = argparse.Namespace()
-    for name, modifier, default in values:
+    current_ns = argparse.Namespace()
+    for name, modifier, default in VALUES:
         val = os.getenv(name, default)
         if val is None:
             raise ValueError('Required Environment variable {!r} is not set!'.format(name))
-        setattr(ns, name.lower(), modifier(val))
-    return ns
+        setattr(current_ns, name.lower(), modifier(val))
+    return current_ns
 
 def main():
     """

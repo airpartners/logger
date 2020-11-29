@@ -188,6 +188,7 @@ class BS1010(SerialDevice):
         self.goto(-(self.width + 1000))
         self.wait_for_idle()
         l = self.report_latches()
+        print(l)
         assert l & 2
         self.set_pos(-100)
         self.goto(0)
