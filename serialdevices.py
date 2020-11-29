@@ -184,11 +184,11 @@ class BS1010(SerialDevice):
         assert l & 16
 
         # zero the thing
-        self.send_cmd('X')  # set motion to x-axis
+        self.send_cmd('Y')  # Motion is on x axis, but we plug into Y axis pins on SB 2.
         self.goto(-(self.width + 1000))
         self.wait_for_idle()
         l = self.report_latches()
-        assert l & 4
+        assert l & 2
         self.set_pos(-100)
         self.goto(0)
         self.wait_for_idle()
