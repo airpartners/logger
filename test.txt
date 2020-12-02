@@ -1,0 +1,273 @@
+-- Logs begin at Mon 2020-11-16 15:17:01 EST, end at Wed 2020-11-18 15:41:41 EST. --
+Nov 16 15:17:05 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]: Valve connected!
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]: Traceback (most recent call last):
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]:     main()
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]:     data.update(mcpc_data)
+Nov 16 15:17:15 raspberrypi log-and-switch.py[296]: TypeError: 'int' object is not iterable
+Nov 16 15:17:15 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 16 15:17:15 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 16 15:17:21 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 16 15:17:21 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 1.
+Nov 16 15:17:21 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 16 15:17:21 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]: Valve connected!
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]: Traceback (most recent call last):
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]:     main()
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]:     data.update(mcpc_data)
+Nov 16 15:17:27 raspberrypi log-and-switch.py[396]: TypeError: 'int' object is not iterable
+Nov 16 15:17:28 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 16 15:17:28 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 16 15:17:33 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 16 15:17:33 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 2.
+Nov 16 15:17:33 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 16 15:17:33 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]: Traceback (most recent call last):
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     main()
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/log-and-switch.py", line 49, in main
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/serialdevices.py", line 152, in connect
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     self.reset()
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/serialdevices.py", line 217, in reset
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     super().reset()
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/serialdevices.py", line 192, in reset
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     self.wait_for_idle()
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/serialdevices.py", line 172, in wait_for_idle
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     self.wait_for_ack(timeout=timeout)
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/serialdevices.py", line 168, in wait_for_ack
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     return self.wait_for('*', timeout=timeout)
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:   File "/home/pi/ade-logger/serialdevices.py", line 77, in wait_for
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]:     raise serial.SerialTimeoutException('Device timed out waiting for msg: {!r}'.format(msg))
+Nov 18 15:38:11 raspberrypi log-and-switch.py[596]: serial.serialutil.SerialTimeoutException: Device timed out waiting for msg: '*'
+Nov 18 15:38:11 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:38:11 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:38:17 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:38:17 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 3.
+Nov 18 15:38:17 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:38:17 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]: Valve connected!
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]: Traceback (most recent call last):
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]:     main()
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]:     data.update(mcpc_data)
+Nov 18 15:38:23 raspberrypi log-and-switch.py[699]: TypeError: 'int' object is not iterable
+Nov 18 15:38:24 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:38:24 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:38:29 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:38:29 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 4.
+Nov 18 15:38:29 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:38:29 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]: Valve connected!
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]: Traceback (most recent call last):
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]:     main()
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]:     data.update(mcpc_data)
+Nov 18 15:38:35 raspberrypi log-and-switch.py[830]: TypeError: 'int' object is not iterable
+Nov 18 15:38:36 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:38:36 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:38:41 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:38:41 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 5.
+Nov 18 15:38:41 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:38:41 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]: Valve connected!
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]: Traceback (most recent call last):
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]:     main()
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]:     data.update(mcpc_data)
+Nov 18 15:38:47 raspberrypi log-and-switch.py[879]: TypeError: 'int' object is not iterable
+Nov 18 15:38:48 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:38:48 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:38:53 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:38:53 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 6.
+Nov 18 15:38:53 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:38:53 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]: Valve connected!
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]: Traceback (most recent call last):
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]:     main()
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]:     data.update(mcpc_data)
+Nov 18 15:38:59 raspberrypi log-and-switch.py[928]: TypeError: 'int' object is not iterable
+Nov 18 15:39:00 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:39:00 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:39:05 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:39:05 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 7.
+Nov 18 15:39:05 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:39:05 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]: Valve connected!
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]: Traceback (most recent call last):
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]:     main()
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]:     data.update(mcpc_data)
+Nov 18 15:39:11 raspberrypi log-and-switch.py[981]: TypeError: 'int' object is not iterable
+Nov 18 15:39:12 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:39:12 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:39:17 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:39:17 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 8.
+Nov 18 15:39:17 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:39:17 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]: Valve connected!
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]: Traceback (most recent call last):
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]:     main()
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]:     data.update(mcpc_data)
+Nov 18 15:39:23 raspberrypi log-and-switch.py[1032]: TypeError: 'int' object is not iterable
+Nov 18 15:39:24 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:39:24 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:39:29 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:39:29 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 9.
+Nov 18 15:39:29 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:39:29 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]: Valve connected!
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]: Traceback (most recent call last):
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]:     main()
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]:     data.update(mcpc_data)
+Nov 18 15:39:35 raspberrypi log-and-switch.py[1082]: TypeError: 'int' object is not iterable
+Nov 18 15:39:35 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:39:35 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:39:41 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:39:41 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 10.
+Nov 18 15:39:41 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:39:41 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]: Valve connected!
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]: Traceback (most recent call last):
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]:     main()
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]:     data.update(mcpc_data)
+Nov 18 15:39:47 raspberrypi log-and-switch.py[1131]: TypeError: 'int' object is not iterable
+Nov 18 15:39:48 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:39:48 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:39:53 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:39:53 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 11.
+Nov 18 15:39:53 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:39:53 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]: Valve connected!
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]: Traceback (most recent call last):
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]:     main()
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]:     data.update(mcpc_data)
+Nov 18 15:39:59 raspberrypi log-and-switch.py[1168]: TypeError: 'int' object is not iterable
+Nov 18 15:39:59 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:39:59 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:40:05 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:40:05 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 12.
+Nov 18 15:40:05 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:40:05 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]: Valve connected!
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]: Traceback (most recent call last):
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]:     main()
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]:     data.update(mcpc_data)
+Nov 18 15:40:11 raspberrypi log-and-switch.py[1218]: TypeError: 'int' object is not iterable
+Nov 18 15:40:11 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:40:11 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:40:17 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:40:17 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 13.
+Nov 18 15:40:17 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:40:17 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]: Valve connected!
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]: Traceback (most recent call last):
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]:     main()
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]:     data.update(mcpc_data)
+Nov 18 15:40:23 raspberrypi log-and-switch.py[1272]: TypeError: 'int' object is not iterable
+Nov 18 15:40:24 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:40:24 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:40:29 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:40:29 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 14.
+Nov 18 15:40:29 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:40:29 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]: Valve connected!
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]: Traceback (most recent call last):
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]:     main()
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]:     data.update(mcpc_data)
+Nov 18 15:40:35 raspberrypi log-and-switch.py[1324]: TypeError: 'int' object is not iterable
+Nov 18 15:40:35 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:40:35 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:40:41 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:40:41 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 15.
+Nov 18 15:40:41 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:40:41 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]: Valve connected!
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]: Traceback (most recent call last):
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]:     main()
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]:     data.update(mcpc_data)
+Nov 18 15:40:47 raspberrypi log-and-switch.py[1378]: TypeError: 'int' object is not iterable
+Nov 18 15:40:48 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:40:48 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:40:53 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:40:53 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 16.
+Nov 18 15:40:53 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:40:53 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]: Valve connected!
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]: Traceback (most recent call last):
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]:     main()
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]:     data.update(mcpc_data)
+Nov 18 15:40:59 raspberrypi log-and-switch.py[1422]: TypeError: 'int' object is not iterable
+Nov 18 15:40:59 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:40:59 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:41:05 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:41:05 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 17.
+Nov 18 15:41:05 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:41:05 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]: Valve connected!
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]: Traceback (most recent call last):
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]:     main()
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]:     data.update(mcpc_data)
+Nov 18 15:41:11 raspberrypi log-and-switch.py[1471]: TypeError: 'int' object is not iterable
+Nov 18 15:41:12 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:41:12 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:41:17 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:41:17 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 18.
+Nov 18 15:41:17 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:41:17 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]: Valve connected!
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]: Traceback (most recent call last):
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]:     main()
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]:     data.update(mcpc_data)
+Nov 18 15:41:23 raspberrypi log-and-switch.py[1545]: TypeError: 'int' object is not iterable
+Nov 18 15:41:24 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:41:24 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:41:29 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:41:29 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 19.
+Nov 18 15:41:29 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:41:29 raspberrypi systemd[1]: Started Data logger connected to two serial devices.
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]: Valve connected!
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]: Traceback (most recent call last):
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]:   File "/home/pi/ade-logger/log-and-switch.py", line 85, in <module>
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]:     main()
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]:   File "/home/pi/ade-logger/log-and-switch.py", line 63, in main
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]:     data.update(mcpc_data)
+Nov 18 15:41:35 raspberrypi log-and-switch.py[1594]: TypeError: 'int' object is not iterable
+Nov 18 15:41:36 raspberrypi systemd[1]: logger.service: Main process exited, code=exited, status=1/FAILURE
+Nov 18 15:41:36 raspberrypi systemd[1]: logger.service: Failed with result 'exit-code'.
+Nov 18 15:41:41 raspberrypi systemd[1]: logger.service: Service RestartSec=5s expired, scheduling restart.
+Nov 18 15:41:41 raspberrypi systemd[1]: logger.service: Scheduled restart job, restart counter is at 20.
+Nov 18 15:41:41 raspberrypi systemd[1]: Stopped Data logger connected to two serial devices.
+Nov 18 15:41:41 raspberrypi systemd[1]: Started Data logger connected to two serial devices.

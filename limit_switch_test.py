@@ -7,7 +7,7 @@ import argparse
 import os
 import time
 
-from serialdevices import ThreeWayValve
+import serialdevices
 
 VALUES = [
     ('VALVE_PORT', str, None),
@@ -32,9 +32,11 @@ def main():
     Main method associatd with simply connecting and then switching the valve.
     """
     cfg = get_config()
-    valve = ThreeWayValve()
+    valve = serialdevices.ThreeWayValve()
+    print("Connecting valve!")
     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
     valve_period = cfg.valve_period # in seconds
+    print("Starting timer.")
     valve_start = time.time()
     while True:
         if time.time() - valve_start > valve_period:
