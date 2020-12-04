@@ -35,14 +35,16 @@ def main():
     valve = serialdevices.ThreeWayValve()
     print("Connecting valve!")
     valve.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
-    valve_period = cfg.valve_period # in seconds
+    valve_period = 0.5 # in seconds
     print("Starting timer.")
     valve_start = time.time()
+    #valve.send_cmd('Y')
+    #time.sleep(valve_period)
     while True:
         if time.time() - valve_start > valve_period:
             l = valve.report_latches()
             print(l)
-        time.sleep(cfg.sampling_period)
+        time.sleep(valve_period)
 
 if __name__ == '__main__':
     main()
