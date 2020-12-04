@@ -14,7 +14,7 @@ from which the board can be set
 import argparse
 
 from serialdevices import BS1010
-
+from serialdevices import ThreeWayValve
 
 parser = argparse.ArgumentParser()
 parser.add_argument('valve_port')
@@ -22,7 +22,7 @@ parser.add_argument('valve_port')
 parser.add_argument('--valve-baud', type=int, required=False, default=9600)
 args = parser.parse_args()
 
-valve = BS1010()
+valve = ThreeWayValve()
 
 # NOTE: reset=False to prevent trying to zero without connected limit switches
 valve.connect(port=args.valve_port, baudrate=args.valve_baud, reset=False)
