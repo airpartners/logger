@@ -8,4 +8,9 @@ run the following command:
 ```
 source setup_debug.sh
 ```
+To change any of the values of the environment variables, either change the
+value already hardcoded in `setup_debug` or overwrite the value with the following command.
+```
+export VARIABLE_TO_OVERRIDE="new_value"
+```
 For additional information, check out the development page in the wiki.
