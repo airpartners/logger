@@ -2,14 +2,10 @@
 """
 Test associated with the three way valve switching functionality.
 """
-
-import argparse
 import os
 import sys
 import time
-
 from common import get_config
-
 # Grab the dependency from the directory above.
 sys.path.append(os.path.realpath('..'))
 from serialdevices import ThreeWayValve

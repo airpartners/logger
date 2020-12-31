@@ -22,7 +22,8 @@ def main():
     Connect to the specified device so that the tester can send commands to it.
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('Device', type=str, help="Specify which device (either valve or mcpc) to connect to.")
+    parser.add_argument('Device', type=str, help="Specify which device (either" \
+                        "valve or mcpc) to connect to.")
     cfg = get_config()
     device = SerialDevice(encoding='ASCII')
 
@@ -31,7 +32,7 @@ def main():
     if args.Device == "valve":
         device.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
     elif args.Device == "mcpc":
-          device.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
+        device.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
     else:
         print("Please specify whether to connect to the valve or mcpc.")
         return
