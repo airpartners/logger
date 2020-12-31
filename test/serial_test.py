@@ -5,7 +5,6 @@ valve and opening a connection for sending and receiving commands.
 This program takes a command line argument, where the argument 'valve' connects
 to the valve and the argument 'mcpc' connects to the MCPC.
 """
-
 import argparse
 import os
 import sys

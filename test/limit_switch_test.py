@@ -4,7 +4,6 @@ Test for testing the valve limit switch. Currently just prints the latches varia
 associated with the limit switch, which changes based on the limit switch
 configuration and status.
 """
-
 import argparse
 import os
 import sys
