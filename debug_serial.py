@@ -1,10 +1,9 @@
 #! /usr/bin/env python3
 
-
 import argparse
 import time
 
-from serialdevices import SerialDevice
+from ..serialdevices import SerialDevice
 
 parser = argparse.ArgumentParser()
 parser.add_argument('port', type=str)
