@@ -157,3 +157,6 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
+# Data file, likely only useful locally (give non-default name to push).
+data.csv
