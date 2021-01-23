@@ -121,6 +121,15 @@ class MCPC(SerialDevice):
     Interface to a Brechtel Mixing Condensation Particle Counter device.
     Documentation at https://github.com/airpartners/logger/wiki/hardware-overview.
     """
+    def __init__(self, response_wait_time=0.2):
+        """
+        Initialize the MCPC with SerialDevice parameters and a measurement delay.
+        """
+        super().__init__()
+        # Time in seconds to wait between sending a command and attempting to read the response.
+        # Default of .2 set via empirical testing and can be adjusted as needed.
+        self.response_wait_time = response_wait_time
+
     @staticmethod
     def _parse_values(data: str):
         """
@@ -153,7 +162,7 @@ class MCPC(SerialDevice):
         receives no data.
         """
         self.send_cmd('read')
-        time.sleep(0.1)
+        time.sleep(self.response_wait_time)
         resp = self.read_all()
         assert len(resp) > 0, "Device returned no data"
         return self._parse_values(resp)
@@ -165,7 +174,7 @@ class MCPC(SerialDevice):
         receives no data.
         """
         self.send_cmd('all')
-        time.sleep(0.2)
+        time.sleep(self.response_wait_time)
         resp = self.read_all()
         assert len(resp) > 0, "Device returned no data"
         return self._parse_values(resp)
@@ -177,10 +186,26 @@ class MCPC(SerialDevice):
         receives no data.
         """
         self.send_cmd('settings')
+        time.sleep(self.response_wait_time)
         resp = self.read_all()
         assert len(resp) > 0, "Device returned no data"
         return self._parse_values(resp)
 
+    def get_response_wait_time(self):
+        """
+        Returns the (floating-point) response wait time associated with the
+        device (i.e. the set amount of time each method waits after sending
+        a command to read the response).
+        """
+        return self.response_wait_time
+
+    def set_response_wait_time(self, response_wait_time):
+        """
+        Set the (floating-point) response wait time associated with the
+        device (i.e. the set amount of time each method waits after sending
+        a command to read the response).
+        """
+        self.response_wait_time = response_wait_time
 
 class BS1010(SerialDevice):
     """
