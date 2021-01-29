@@ -14,7 +14,7 @@ from common import get_config
 
 # Grab the dependency from the directory above.
 sys.path.append(os.path.realpath('..'))
-from serialdevices import SerialDevice
+from serialdevices import MCPC, ThreeWayValve
 
 def main():
     """
@@ -24,14 +24,16 @@ def main():
     parser.add_argument('Device', type=str, help="Specify which device (either" \
                         "valve or mcpc) to connect to.")
     cfg = get_config()
-    device = SerialDevice(encoding='ASCII')
 
     # Parse the input argument to determine which device to connect to.
     args = parser.parse_args()
+    device = None
     if args.Device == "valve":
-        device.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
+        device = ThreeWayValve()
+        device.connect(port=cfg.valve_port, baudrate=cfg.valve_baud, reset=False)
     elif args.Device == "mcpc":
-        device.connect(port=cfg.valve_port, baudrate=cfg.valve_baud)
+        device = MCPC()
+        device.connect(port=cfg.mcpc_port, baudrate=cfg.mcpc_baud)
     else:
         print("Please specify whether to connect to the valve or mcpc.")
         return
