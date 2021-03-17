@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 """
-Launch and debug using the serial connection to the valve by connecting to the
-valve and opening a connection for sending and receiving commands.
+Launch and debug using the serial connection to the valve or MCPC by connecting to 
+it and opening a connection for sending and receiving commands.
 This program takes a command line argument, where the argument 'valve' connects
 to the valve and the argument 'mcpc' connects to the MCPC.
 """
