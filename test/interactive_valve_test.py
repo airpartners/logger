@@ -21,7 +21,7 @@ import sys
 
 # Grab the dependency from the directory above.
 sys.path.append(os.path.realpath('..'))
-from serialdevices import ThreeWayValve
+from serialdevices import BS1010
 
 def main():
     """
@@ -32,7 +32,7 @@ def main():
     parser.add_argument('--valve-baud', type=int, required=False, default=9600)
     args = parser.parse_args()
 
-    valve = ThreeWayValve()
+    valve = BS1010()
 
     # NOTE: reset=False to prevent trying to zero without connected limit switches
     valve.connect(port=args.valve_port, baudrate=args.valve_baud, reset=False)
